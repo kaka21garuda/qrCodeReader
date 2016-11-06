@@ -46,15 +46,51 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
             videoPreviewLayer?.frame = view.layer.bounds
             view.layer.addSublayer(videoPreviewLayer!)
+            view.bringSubview(toFront: messageLabel)
+
             
             captureSession?.startRunning()
+            
+            //Initialize QR Code Frame to highlight the QR code.
+            qrCodeView = UIView()
+            
+            qrCodeView?.layer.borderColor = UIColor.green.cgColor
+            qrCodeView?.layer.borderWidth = 2
+            view.addSubview(qrCodeView!)
+            view.bringSubview(toFront: qrCodeView!)
+            
+            
             
             
         } catch {
             print(error.localizedDescription)
             return
         }
+    }
+    
+    
+    //This function is the delegate method to decode the information in the QR code
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+        //Check if the metadata array is empty
+        if metadataObjects == nil || metadataObjects.count == 0 {
+            qrCodeView?.frame = CGRect.zero
+            messageLabel.text = "No QR code is detected!"
+            return
+        }
         
+        //Get the metadata object
+        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+        
+        if metadataObj.type == AVMetadataObjectTypeQRCode {
+            //if the found metadata == with the qr code metadata, then update the string in messageLabel.
+            let barcodeObj = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
+            qrCodeView?.frame =  barcodeObj!.bounds
+            
+            if metadataObj.stringValue != nil {
+                messageLabel.text = metadataObj.stringValue
+            }
+            
+        }
         
     }
     
