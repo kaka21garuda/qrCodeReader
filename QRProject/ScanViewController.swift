@@ -7,3 +7,55 @@
 //
 
 import UIKit
+import AVFoundation
+
+class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+    
+    //Message Label, where it stores the message of the QR code
+    @IBOutlet weak var messageLabel: UILabel!
+    
+    //Create a property to coordinate the flow data from AV input to output, and to perform a real time capture
+    var captureSession: AVCaptureSession?
+    
+    //Create a property to record a video, in order to implement video capture
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    
+    //Create a property of a qr code reader
+    var qrCodeView: UIView?
+    
+    override func viewDidLoad() {
+        //Grab a device type video from a specific hardware of the phone, in this case we are going to use camera
+        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        
+        do {
+            //Get an instance of the device input
+            let input = try AVCaptureDeviceInput(device: captureDevice)
+            //initialize the capture session property
+            captureSession = AVCaptureSession()
+            //insert the input into capture session
+            captureSession?.addInput(input)
+            
+            let captureMetadataOutput = AVCaptureMetadataOutput()
+            captureSession?.addOutput(captureMetadataOutput)
+            
+            //Set the delegate as self, and use the default dispatch queue for the callbacks
+            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
+            
+            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+            videoPreviewLayer?.frame = view.layer.bounds
+            view.layer.addSublayer(videoPreviewLayer!)
+            
+            captureSession?.startRunning()
+            
+            
+        } catch {
+            print(error.localizedDescription)
+            return
+        }
+        
+        
+    }
+    
+}
