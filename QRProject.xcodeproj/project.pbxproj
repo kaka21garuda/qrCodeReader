@@ -14,6 +14,7 @@
 		C64E6A161DCEE79000DC3D59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C64E6A141DCEE79000DC3D59 /* LaunchScreen.storyboard */; };
 		C64E6A211DCEE79000DC3D59 /* QRProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E6A201DCEE79000DC3D59 /* QRProjectTests.swift */; };
 		C64E6A2C1DCEE79000DC3D59 /* QRProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E6A2B1DCEE79000DC3D59 /* QRProjectUITests.swift */; };
+		C64E6A3A1DCEEA0400DC3D59 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E6A391DCEEA0400DC3D59 /* ScanViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		C64E6A271DCEE79000DC3D59 /* QRProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QRProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64E6A2B1DCEE79000DC3D59 /* QRProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRProjectUITests.swift; sourceTree = "<group>"; };
 		C64E6A2D1DCEE79000DC3D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C64E6A391DCEEA0400DC3D59 /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				C64E6A0B1DCEE79000DC3D59 /* AppDelegate.swift */,
 				C64E6A0D1DCEE79000DC3D59 /* ViewController.swift */,
+				C64E6A391DCEEA0400DC3D59 /* ScanViewController.swift */,
 				C64E6A0F1DCEE79000DC3D59 /* Main.storyboard */,
 				C64E6A121DCEE79000DC3D59 /* Assets.xcassets */,
 				C64E6A141DCEE79000DC3D59 /* LaunchScreen.storyboard */,
@@ -264,6 +267,7 @@
 			files = (
 				C64E6A0E1DCEE79000DC3D59 /* ViewController.swift in Sources */,
 				C64E6A0C1DCEE79000DC3D59 /* AppDelegate.swift in Sources */,
+				C64E6A3A1DCEEA0400DC3D59 /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
